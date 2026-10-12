@@ -462,6 +462,63 @@ h1, h2 { letter-spacing: -.005em; }
   .strip-item + .strip-item { border-left: 0; border-top: 1px solid var(--line); }
   .band { padding-block: 84px; margin-top: 64px; }
 }
+
+/* ===== Mobile polish ===== */
+.strip-item b, .contact-row strong { overflow-wrap: normal; }
+.strip-item .nowrap, #ph1, #ph2 { white-space: nowrap; }
+@media (max-width: 860px) {
+  .icon-btn { width: 44px; height: 44px; }
+  .nav-links a { padding: 14px; font-size: 1rem; }
+  .hero-art .hero-stage { max-width: 320px; margin-inline: auto; }
+  .hero-facts { gap: 12px 22px; margin-top: 28px; padding-top: 20px; }
+  .hero-facts b { font-size: 1.6rem; }
+  .strip-item { padding: 16px 20px; }
+  .strip-item b { font-size: .95rem; }
+  .strip-item .nowrap { white-space: normal; }
+  .team-grid { gap: 12px; }
+  .person { flex-direction: row; align-items: center; text-align: left; padding: 18px 20px; gap: 18px; border-radius: 20px; }
+  .person .monogram { width: 68px; height: 68px; font-size: 1.5rem; box-shadow: inset 0 0 0 2px var(--gold), 0 0 0 4px var(--surface-2); flex: none; }
+  .person h3 { font-size: 1.3rem; }
+  .person .role { margin-top: 6px; padding: 4px 10px; font-size: .68rem; letter-spacing: .12em; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: -20px; padding: 4px 20px 12px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: none; scroll-snap-align: start; padding: 12px 18px; }
+  .menu-intro { min-height: 0; }
+  .sig.has-photo, .sig.feature.has-photo { min-height: 280px; padding: 26px; }
+  .gallery-grid { grid-auto-rows: auto; }
+  .g-tile.wide { aspect-ratio: 16 / 9; min-height: 0; }
+  .contact-row { flex-wrap: wrap; row-gap: 12px; }
+  .contact-row .txt { flex: 1 1 60%; }
+  .contact-row .copy { margin-left: 62px; }
+  .map-info .btn { width: 100%; }
+  .map-actions { flex-direction: column; }
+  .band { padding-block: 72px; }
+}
+@media (max-width: 480px) {
+  .wrap { padding-inline: 16px; }
+  .tabs { margin-inline: -16px; padding-inline: 16px; }
+  .hero h1 { font-size: 2.45rem; }
+  .hero-cta .btn { flex: 1 1 auto; }
+  .section-head { margin-bottom: 30px; }
+  .section-head h2 { font-size: 2rem; }
+  section { padding-block: 56px; }
+  .g-tile figcaption { padding: 22px 12px 10px; font-size: .84rem; }
+  .g-tile figcaption small { font-size: .62rem; letter-spacing: .1em; }
+  .val { padding: 20px; }
+  .menu-list li { padding: 14px; }
+  .foot { gap: 24px; padding-block: 44px 28px; }
+}
+@media (max-width: 360px) {
+  .brand-name { font-size: 1rem; }
+  .hero h1 { font-size: 2.15rem; }
+  .strip-item .si { width: 40px; height: 40px; }
+}
+
+@media (max-width: 600px) {
+  .hero-facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 12px; }
+  .hero-facts span { font-size: .64rem; letter-spacing: .08em; }
+  .hero-facts b { font-size: 1.5rem; }
+}
 </style>
 
 <!-- Icon sprite -->
@@ -596,7 +653,7 @@ h1, h2 { letter-spacing: -.005em; }
   <div class="wrap strip-wrap">
     <div class="strip" role="list">
       <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-pin"/></svg></span><div><small>Find us</small><b>Lapaz, Tabora No. 3, Accra</b></div></div>
-      <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-phone"/></svg></span><div><small>Call us</small><b>0273 664 058 &middot; 0244 284 462</b></div></div>
+      <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-phone"/></svg></span><div><small>Call us</small><b><span class="nowrap">0273 664 058</span> &middot; <span class="nowrap">0244 284 462</span></b></div></div>
       <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-shield"/></svg></span><div><small>Registered business</small><b>BN325941224 &middot; Dec 2024</b></div></div>
     </div>
   </div>
@@ -906,6 +963,8 @@ h1, h2 { letter-spacing: -.005em; }
         <ul><li>Lapaz, Tabora No. 3</li><li>Accra, Ghana</li><li>0273 664 058</li><li>0244 284 462</li></ul>
       </div>
     </div>
+    <p class="credits">Some photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>: Keesha's Kitchen, Tosan Dudun, Alex Teixeira, Nathan Dumlao, Leslie del Moral, Alexander Mils, Taylor Kiser, Mihir Sabnis and SO Creative.</p>
+    <div class="legal">
       <span>&copy; 2026 Royal Delight Cafe and Restaurant. All rights reserved.</span>
       <span>Registered business name · No. BN325941224</span>
     </div>
