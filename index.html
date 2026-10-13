@@ -403,7 +403,7 @@ h1, h2 { letter-spacing: -.005em; }
 
 /* Trust strip */
 .strip-wrap { position: relative; z-index: 3; margin-top: -52px; }
-.strip { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow-lg); overflow: hidden; }
+.strip { display: grid; grid-template-columns: repeat(2, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow-lg); overflow: hidden; }
 .strip-item { display: flex; align-items: center; gap: 16px; padding: 22px 26px; min-width: 0; }
 .strip-item + .strip-item { border-left: 1px solid var(--line); }
 .strip-item .si { width: 48px; height: 48px; border-radius: 50%; background: var(--royal); color: var(--gold-2); display: grid; place-items: center; flex: none; box-shadow: inset 0 0 0 1.5px var(--gold); }
@@ -529,6 +529,58 @@ h1, h2 { letter-spacing: -.005em; }
   .hero-facts span { font-size: .64rem; letter-spacing: .08em; }
   .hero-facts b { font-size: 1.5rem; }
 }
+
+/* Hero: palace-window arches + rotating seal */
+.hero-stage.arches { display: grid; grid-template-columns: 1fr 1.18fr 1fr; grid-template-rows: 1fr; gap: 12px; align-items: end; padding-bottom: 22px; aspect-ratio: 1 / 1.02; max-width: 540px; }
+.hero-stage.arches > svg { position: absolute; inset: 0 0 22px; width: 100%; height: calc(100% - 22px); max-width: none; }
+.arch { position: relative; margin: 0; z-index: 1; border-radius: 999px 999px 18px 18px; overflow: hidden; background: linear-gradient(160deg, #3A1D70, #20103F); box-shadow: 0 0 0 3px var(--gold-2), 0 0 0 9px rgba(217,169,58,.16), 0 26px 44px -14px rgba(0,0,0,.55); display: none; min-width: 0; }
+.arch.ok { display: block; }
+.arch.a1 { height: 70%; }
+.arch.a2 { height: 100%; }
+.arch.a3 { height: 82%; }
+.arch img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.arch::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(20,8,40,.85)); }
+.arch figcaption { position: absolute; left: 0; right: 0; bottom: 14px; z-index: 2; text-align: center; font: 600 .72rem var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-2); padding-inline: 8px; }
+.arch-base { position: absolute; left: -2%; right: -2%; bottom: 0; height: 12px; border-radius: 6px; z-index: 2; box-shadow: 0 8px 18px rgba(0,0,0,.35); }
+.hero-stage.arches.has-photo .arch-base { display: block; }
+.hero-stage.arches:not(.has-photo) .arch-base, .hero-stage.arches:not(.has-photo) .seal { display: none; }
+.seal { position: absolute; left: -22px; top: 16%; width: 128px; height: 128px; z-index: 3; filter: drop-shadow(0 12px 20px rgba(0,0,0,.45)); }
+.seal svg { width: 100%; height: 100%; display: block; }
+@media (prefers-reduced-motion: no-preference) { .seal-ring { transform-origin: 60px 60px; animation: spin 26s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } } }
+@media (max-width: 860px) { .hero-stage.arches { max-width: 360px; } .seal { width: 92px; height: 92px; left: -6px; top: 18%; } .arch figcaption { font-size: .6rem; bottom: 10px; letter-spacing: .1em; } }
+
+/* Hero collage: leaf frame, tilted polaroid, round photo, glass tag, seal */
+.hero-stage.collage { position: relative; aspect-ratio: 1 / 1.04; max-width: 540px; display: block; padding: 0; }
+.hero-stage.collage > svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.collage figure { margin: 0; position: absolute; display: none; }
+.collage figure.ok { display: block; }
+.collage .m-main { right: 0; top: 4%; width: 72%; height: 84%; border-radius: 240px 26px 240px 26px; overflow: hidden; border: 4px solid var(--gold-2); box-shadow: 0 0 0 10px rgba(217,169,58,.15), 0 34px 60px -20px rgba(0,0,0,.65); background: #20103F; }
+.collage .m-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.collage .m-polaroid { left: 0; bottom: 4%; width: 42%; background: #FFFDF8; padding: 8px 8px 12px; border-radius: 6px; transform: rotate(-6deg); box-shadow: 0 22px 40px -12px rgba(0,0,0,.6); z-index: 3; }
+.collage .m-polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+.collage .m-polaroid figcaption { margin-top: 9px; text-align: center; font-family: var(--f-display); font-size: .95rem; color: #2A1355; }
+.collage .m-circle { right: 3%; bottom: 0; width: 33%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 5px solid #20103F; box-shadow: 0 0 0 3px var(--gold-2), 0 20px 36px -10px rgba(0,0,0,.65); z-index: 3; background: #20103F; }
+.collage .m-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.collage .m-glass { position: absolute; left: 2%; top: 14%; z-index: 4; max-width: 44%; padding: 12px 16px; border-radius: 16px 4px 16px 4px; background: rgba(32,16,63,.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(240,205,106,.55); box-shadow: 0 16px 30px -12px rgba(0,0,0,.6); display: none; }
+.collage .m-glass small { display: block; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 4px; }
+.collage .m-glass b { font-family: var(--f-display); font-weight: 400; font-size: 1.05rem; line-height: 1.2; color: #fff; }
+.hero-stage.collage.has-photo .m-glass { display: block; }
+.hero-stage.collage .seal { left: auto; right: -14px; top: -10px; bottom: auto; width: 104px; height: 104px; display: block; }
+.hero-stage.collage:not(.has-photo) .seal { display: none; }
+@media (max-width: 860px) {
+  .hero-stage.collage { max-width: 340px; }
+  .collage .m-glass { padding: 9px 12px; }
+  .collage .m-glass b { font-size: .88rem; }
+  .collage .m-polaroid figcaption { font-size: .78rem; margin-top: 6px; }
+  .hero-stage.collage .seal { width: 84px; height: 84px; right: -6px; top: -8px; }
+}
+
+@media (max-width: 860px) {
+  .collage .m-main { width: 80%; height: 82%; top: 6%; border-radius: 190px 22px 190px 22px; }
+  .collage .m-polaroid { width: 36%; bottom: 2%; padding: 6px 6px 8px; }
+  .collage .m-circle { width: 29%; right: 2%; }
+  .collage .m-glass { top: 2%; left: 0; max-width: 46%; }
+}
 </style>
 </head>
 <body>
@@ -601,8 +653,8 @@ h1, h2 { letter-spacing: -.005em; }
         </div>
       </div>
       <div class="hero-art">
-        <div class="hero-stage">
-        <svg viewBox="0 0 480 480" role="img" aria-label="Illustration of a plate with jollof rice, fried plantain, chicken and a garnish">
+        <div class="hero-stage collage">
+          <svg viewBox="0 0 480 480" role="img" aria-label="Illustration of a plate with jollof rice, fried plantain, chicken and a garnish">
           <defs>
             <radialGradient id="plateG" cx="45%" cy="38%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9d0e8"/></radialGradient>
             <radialGradient id="rice" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f08a3c"/><stop offset="1" stop-color="#c2481f"/></radialGradient>
@@ -652,9 +704,26 @@ h1, h2 { letter-spacing: -.005em; }
           <!-- sparkle accents -->
           <g fill="#D9A93A"><path d="M60 120l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/><path d="M418 96l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="M430 372l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
         </svg>
-          <img class="photo hero-main" src="https://i.pinimg.com/736x/a0/94/e6/a094e650124f0595a342b833a2e17b1a.jpg" alt="Royal Delight special jollof" decoding="async" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('has-photo')">
-          <img class="photo hero-sub s1" src="https://i.pinimg.com/736x/47/2e/71/472e71466831589e1db3cebfc030499a.jpg" alt="Banku with tilapia" decoding="async" referrerpolicy="no-referrer">
-          <img class="photo hero-sub s2" src="https://i.pinimg.com/1200x/01/41/40/0141409ed23dab4a56c6aa834a1e689f.jpg" alt="Chocolate dream cake" decoding="async" referrerpolicy="no-referrer">
+          <figure class="m-main">
+            <img class="photo" src="https://i.pinimg.com/736x/a0/94/e6/a094e650124f0595a342b833a2e17b1a.jpg" alt="Royal Delight special jollof" decoding="async" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok');this.closest('.hero-stage').classList.add('has-photo')">
+          </figure>
+          <figure class="m-polaroid">
+            <img class="photo" src="https://i.pinimg.com/736x/47/2e/71/472e71466831589e1db3cebfc030499a.jpg" alt="Banku with tilapia" decoding="async" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')">
+            <figcaption>Banku &amp; Tilapia</figcaption>
+          </figure>
+          <figure class="m-circle">
+            <img class="photo" src="https://i.pinimg.com/1200x/01/41/40/0141409ed23dab4a56c6aa834a1e689f.jpg" alt="Chocolate dream cake" decoding="async" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')">
+          </figure>
+          <div class="m-glass" aria-hidden="true"><small>House favourite</small><b>Royal Delight Special Jollof</b></div>
+          <div class="seal" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="58" fill="#2A1355" stroke="#F0CD6A" stroke-width="2"/>
+              <circle cx="60" cy="60" r="34" fill="none" stroke="#F0CD6A" stroke-opacity=".5" stroke-width="1"/>
+              <g class="seal-ring"><defs><path id="sealPath" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+              <text font-family="Figtree, system-ui, sans-serif" font-size="9" font-weight="600" fill="#F0CD6A"><textPath href="#sealPath" textLength="276" lengthAdjust="spacing">ROYAL DELIGHT &#8226; CAFE &amp; RESTAURANT &#8226; ACCRA &#8226;</textPath></text></g>
+              <use href="#i-crown" x="42" y="42" width="36" height="36" fill="none" stroke="#F0CD6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -665,7 +734,6 @@ h1, h2 { letter-spacing: -.005em; }
     <div class="strip" role="list">
       <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-pin"/></svg></span><div><small>Find us</small><b>Lapaz, Tabora No. 3, Accra</b></div></div>
       <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-phone"/></svg></span><div><small>Call us</small><b><span class="nowrap">0273 664 058</span> &middot; <span class="nowrap">0244 284 462</span></b></div></div>
-      <div class="strip-item" role="listitem"><span class="si"><svg class="icon"><use href="#i-shield"/></svg></span><div><small>Registered business</small><b>BN325941224 &middot; Dec 2024</b></div></div>
     </div>
   </div>
 
@@ -974,9 +1042,9 @@ h1, h2 { letter-spacing: -.005em; }
         <ul><li>Lapaz, Tabora No. 3</li><li>Accra, Ghana</li><li>0273 664 058</li><li>0244 284 462</li></ul>
       </div>
     </div>
-    <div class="legal">
+
       <span>&copy; 2026 Royal Delight Cafe and Restaurant. All rights reserved.</span>
-      <span>Registered Business name · No. BN325941224</span>
+      <span>Registered business name · No. BN325941224</span>
     </div>
   </div>
 </footer>
